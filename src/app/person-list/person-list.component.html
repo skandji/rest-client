@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-6">
+      <app-form-person (back)="feedBack($event)"></app-form-person>
+    </div>
+    <div class="col-lg-6">
+      <h2 class="text-danger">{{now | date:"dd/MM/yyyy"}}</h2>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Prénom</th>
+          <th>Nom</th>
+          <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of persons; let i = index" (click)="onDetail(p.id)">
+          <td>{{i + 1}}</td>
+          <td>{{p?.prenom}}</td>
+          <td>{{p?.nom}}</td>
+          <td>{{p?.email}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <p *ngIf="persons?.length === 0">Liste vide</p>
+    </div>
+  </div>
+</div>
