@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6">
-      <app-form-person (back)="feedBack($event)"></app-form-person>
+      <app-form-person [p]="personne" (back)="feedBack($event)"></app-form-person>
     </div>
     <div class="col-lg-6">
       <h2 class="text-danger">{{now | date:"dd/MM/yyyy"}}</h2>
@@ -12,6 +12,7 @@
           <th>Prénom</th>
           <th>Nom</th>
           <th>Email</th>
+          <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
           <td>{{p?.prenom}}</td>
           <td>{{p?.nom}}</td>
           <td>{{p?.email}}</td>
+          <td (click)="$event.stopPropagation()"><button class="btn btn-xs btn-danger" (click)="onDeletePerson(p)">supp.</button></td>
         </tr>
         </tbody>
       </table>

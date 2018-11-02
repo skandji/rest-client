@@ -10,6 +10,8 @@ import {PersonListComponent} from './person-list/person-list.component';
 import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from './app.routes';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
+import {HttpClientModule} from '@angular/common/http';
+import {PersonneService} from './services/personne.service';
 
 
 @NgModule({
@@ -24,9 +26,10 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(APP_ROUTES)
   ],
-  providers: [],
+  providers: [PersonneService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

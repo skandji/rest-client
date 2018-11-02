@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Personne} from '../models/personne';
 import {ActivatedRoute} from '@angular/router';
 import {PERSONS} from '../services/data.service';
+import {PersonneService} from '../services/personne.service';
 
 @Component({
   selector: 'app-person-detail',
@@ -11,7 +12,8 @@ import {PERSONS} from '../services/data.service';
 export class PersonDetailComponent implements OnInit {
   personne: Personne;
   id: string;
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute,
+              private personneService: PersonneService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -19,11 +21,14 @@ export class PersonDetailComponent implements OnInit {
   }
 
   getPerson(id: string): void {
-    for (let i = 0; i < PERSONS.length; i++){
-      if (PERSONS[i].id.toString() === id){
-        this.personne = PERSONS[i];
-        break;
+    this.personneService.getPersonById(id).subscribe(
+      p => {
+        this.personne = p;
+        console.log(this.personne);
+      },
+      error => {
+        console.log(error);
       }
-    }
+    );
   }
 }

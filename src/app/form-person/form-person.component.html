@@ -14,4 +14,7 @@
   <div class="form-group">
     <button class="btn-success btn-xs" (click)="onSubmit()" [disabled]="!formPerson.valid">Valider</button>
   </div>
+  <div *ngIf="message" class="alert-danger">
+    <p>{{message}}</p>
+  </div>
 </form>
